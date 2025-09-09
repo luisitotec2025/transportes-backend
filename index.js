@@ -24,12 +24,10 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 // Conexión a PostgreSQL
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "transportes",
-  password: "formula11",
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, // Render lo necesita
 });
+
 
 // Ruta prueba
 app.get("/", (req, res) => {
